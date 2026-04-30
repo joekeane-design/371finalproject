@@ -1,0 +1,201 @@
+CREATE TABLE customers (
+    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Phone VARCHAR(20),
+    Address VARCHAR(255)
+);
+CREATE TABLE services (
+    ServiceID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Description TEXT NOT NULL,
+    BasePrice DECIMAL(10,2) NOT NULL,
+    BaseDuration VARCHAR(50) NOT NULL
+);
+CREATE TABLE service_requests (
+    RequestID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    YardSize VARCHAR(50),
+    Notes TEXT,
+    BaseTotal DECIMAL(10,2) NOT NULL,
+    DiscountPercent DECIMAL(5,2) DEFAULT 0.00,
+    FinalEstimate DECIMAL(10,2) NOT NULL,
+    Status VARCHAR(50) NOT NULL,
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+);
+
+CREATE TABLE service_request_items (
+    RequestItemID INT AUTO_INCREMENT PRIMARY KEY,
+    RequestID INT NOT NULL,
+    ServiceID INT NOT NULL,
+    FOREIGN KEY (RequestID) REFERENCES service_requests(RequestID),
+    FOREIGN KEY (ServiceID) REFERENCES services(ServiceID)
+);
+
+CREATE TABLE bookings (
+    BookingID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    RequestID INT,
+    FinalPrice DECIMAL(10,2) NOT NULL,
+    RequestedDate DATE NOT NULL,
+    BookingTime TIME NOT NULL,
+    Status VARCHAR(50) NOT NULL,
+    ServiceProvider VARCHAR(100),
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID),
+    FOREIGN KEY (RequestID) REFERENCES service_requests(RequestID)
+);
+
+CREATE TABLE booking_services (
+    BookingServiceID INT AUTO_INCREMENT PRIMARY KEY,
+    BookingID INT NOT NULL,
+    ServiceID INT NOT NULL,
+    FOREIGN KEY (BookingID) REFERENCES bookings(BookingID),
+    FOREIGN KEY (ServiceID) REFERENCES services(ServiceID)
+);
+
+CREATE TABLE confirmations (
+    ConfirmationID INT AUTO_INCREMENT PRIMARY KEY,
+    BookingID INT NOT NULL,
+    CustomerID INT NOT NULL,
+    Message TEXT NOT NULL,
+    SentEmail BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (BookingID) REFERENCES bookings(BookingID),
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+);
+
+CREATE TABLE feedback (
+    FeedbackID INT AUTO_INCREMENT PRIMARY KEY,
+    CustomerID INT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100),
+    Rating INT,
+    Comment TEXT NOT NULL,
+    FOREIGN KEY (CustomerID) REFERENCES customers(CustomerID)
+);
+
+CREATE TABLE admins (
+    AdminID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL
+);
+
+
+
+You can add sample data to the above tables:
+INSERT INTO customers (FirstName, LastName, Email, PasswordHash, Phone, Address) VALUES
+('John', 'Smith', 'john@example.com', 'hashedpass1', '7011111111', '123 Main St'),
+('Emma', 'Johnson', 'emma@example.com', 'hashedpass2', '7012222222', '456 Oak St'),
+('Michael', 'Brown', 'michael@example.com', 'hashedpass3', '7013333333', '789 Pine St'),
+('Sophia', 'Davis', 'sophia@example.com', 'hashedpass4', '7014444444', '321 Elm St'),
+('Daniel', 'Wilson', 'daniel@example.com', 'hashedpass5', '7015555555', '654 Cedar St'),
+('Olivia', 'Moore', 'olivia@example.com', 'hashedpass6', '7016666666', '987 Birch St'),
+('James', 'Taylor', 'james@example.com', 'hashedpass7', '7017777777', '147 Maple St'),
+('Ava', 'Anderson', 'ava@example.com', 'hashedpass8', '7018888888', '258 Walnut St'),
+('William', 'Thomas', 'william@example.com', 'hashedpass9', '7019999999', '369 Cherry St'),
+('Mia', 'Jackson', 'mia@example.com', 'hashedpass10', '7011010101', '159 Aspen St');
+
+-- 2. services (10 records)
+INSERT INTO services (Name, Description, BasePrice, BaseDuration) VALUES
+('Grass Seeding', 'Improve lawn thickness', 120.00, '2 hours'),
+('Plant Seeding', 'Seasonal flower planting', 95.00, '1.5 hours'),
+('Lawn Fertilizing', 'Fertilizer application', 85.00, '1 hour'),
+('Weed Control', 'Remove unwanted weeds', 75.00, '1 hour'),
+('Seasonal Cleanup', 'Leaf and debris cleanup', 150.00, '3 hours'),
+('Mulching', 'Garden mulching service', 110.00, '2 hours'),
+('Tree Trimming', 'Trim small trees and shrubs', 200.00, '4 hours'),
+('Garden Design', 'Landscape planning', 250.00, '5 hours'),
+('Sod Installation', 'New grass sod installation', 300.00, '6 hours'),
+('Sprinkler Check', 'Sprinkler system inspection', 90.00, '1 hour');
+
+-- 3. service_requests (10 records)
+INSERT INTO service_requests (CustomerID, YardSize, Notes, BaseTotal, DiscountPercent, FinalEstimate, Status) VALUES
+(1, 'Small', 'Front yard only', 120.00, 0, 120.00, 'Pending'),
+(2, 'Medium', 'Backyard work', 180.00, 10, 162.00, 'Confirmed'),
+(3, 'Large', 'Full lawn service', 300.00, 10, 270.00, 'Pending'),
+(4, 'Small', 'Flower garden', 95.00, 0, 95.00, 'Completed'),
+(5, 'Medium', 'Weed issues', 160.00, 0, 160.00, 'Pending'),
+(6, 'Large', 'Cleanup needed', 250.00, 10, 225.00, 'Confirmed'),
+(7, 'Small', 'Quick trim', 200.00, 0, 200.00, 'Pending'),
+(8, 'Medium', 'Mulch and seeds', 205.00, 10, 184.50, 'Completed'),
+(9, 'Large', 'New sod', 300.00, 0, 300.00, 'Pending'),
+(10, 'Small', 'Sprinkler repair check', 90.00, 0, 90.00, 'Confirmed');
+
+-- 4. service_request_items (10 records)
+INSERT INTO service_request_items (RequestID, ServiceID) VALUES
+(1, 1),
+(2, 2),
+(3, 9),
+(4, 2),
+(5, 4),
+(6, 5),
+(7, 7),
+(8, 6),
+(9, 9),
+(10, 10);
+
+INSERT INTO bookings (CustomerID, RequestID, FinalPrice, RequestedDate, BookingTime, Status, ServiceProvider) VALUES
+(1, 1, 120.00, '2026-05-01', '09:00:00', 'Pending', 'Mike'),
+(2, 2, 162.00, '2026-05-02', '10:00:00', 'Confirmed', 'Sarah'),
+(3, 3, 270.00, '2026-05-03', '11:00:00', 'Pending', 'Tom'),
+(4, 4, 95.00, '2026-05-04', '12:00:00', 'Completed', 'Anna'),
+(5, 5, 160.00, '2026-05-05', '01:00:00', 'Pending', 'Chris'),
+(6, 6, 225.00, '2026-05-06', '02:00:00', 'Confirmed', 'Linda'),
+(7, 7, 200.00, '2026-05-07', '03:00:00', 'Pending', 'David'),
+(8, 8, 184.50, '2026-05-08', '04:00:00', 'Completed', 'Nancy'),
+(9, 9, 300.00, '2026-05-09', '05:00:00', 'Pending', 'Kevin'),
+(10, 10, 90.00, '2026-05-10', '06:00:00', 'Confirmed', 'Lisa');
+
+
+INSERT INTO booking_services (BookingID, ServiceID) VALUES
+(1, 1),
+(2, 2),
+(3, 9),
+(4, 2),
+(5, 4),
+(6, 5),
+(7, 7),
+(8, 6),
+(9, 9),
+(10, 10);
+
+INSERT INTO confirmations (BookingID, CustomerID, Message, SentEmail) VALUES
+(1, 1, 'Your booking is pending.', TRUE),
+(2, 2, 'Your booking is confirmed.', TRUE),
+(3, 3, 'Your booking is pending.', FALSE),
+(4, 4, 'Your booking is completed.', TRUE),
+(5, 5, 'Your booking is pending.', FALSE),
+(6, 6, 'Your booking is confirmed.', TRUE),
+(7, 7, 'Your booking is pending.', FALSE),
+(8, 8, 'Your booking is completed.', TRUE),
+(9, 9, 'Your booking is pending.', FALSE),
+(10, 10, 'Your booking is confirmed.', TRUE);
+
+
+
+
+INSERT INTO feedback (CustomerID, Name, Email, Rating, Comment) VALUES
+(1, 'John Smith', 'john@example.com', 5, 'Excellent service'),
+(2, 'Emma Johnson', 'emma@example.com', 4, 'Very good work'),
+(3, 'Michael Brown', 'michael@example.com', 5, 'Highly recommended'),
+(4, 'Sophia Davis', 'sophia@example.com', 3, 'Good but delayed'),
+(5, 'Daniel Wilson', 'daniel@example.com', 4, 'Satisfied with service'),
+(6, 'Olivia Moore', 'olivia@example.com', 5, 'Perfect cleanup'),
+(7, 'James Taylor', 'james@example.com', 4, 'Nice lawn work'),
+(8, 'Ava Anderson', 'ava@example.com', 5, 'Great landscaping'),
+(9, 'William Thomas', 'william@example.com', 3, 'Average experience'),
+(10, 'Mia Jackson', 'mia@example.com', 4, 'Good customer support');
+
+INSERT INTO admins (Username, PasswordHash) VALUES
+('admin1', 'adminpass1'),
+('admin2', 'adminpass2'),
+('admin3', 'adminpass3'),
+('admin4', 'adminpass4'),
+('admin5', 'adminpass5'),
+('admin6', 'adminpass6'),
+('admin7', 'adminpass7'),
+('admin8', 'adminpass8'),
+('admin9', 'adminpass9'),
+('admin10', 'adminpass10');
+
