@@ -15,7 +15,7 @@ if (!isset($_SESSION['CustomerID'])) {
     <title>Customer Dashboard</title>
     </head>
 <body>
-    <navbar.php></navbar.php>
+    <navbar></navbar>
     <h1>Hello, <?php echo htmlspecialchars($_SESSION['FirstName']); ?>!</h1>
    # cards that will show upcoming bookings, types of services.
 </body>
