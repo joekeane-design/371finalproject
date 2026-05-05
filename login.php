@@ -172,6 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="register-link">
             Don't have an account? <a href="register.php">Register here</a>
         </div>
+        <div class="admin-login-link">
+            Admin? <a href="adminlogin.php">Login Here</a>
     </div>
 </body>
 </html>
