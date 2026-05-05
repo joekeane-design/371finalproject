@@ -1,5 +1,5 @@
-//Author Rivers Martin
 <?php
+// Author Rivers Martin
 session_start();
 require_once 'connection.php';
 
@@ -66,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST" action="adminlogin.php">
         <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="email" placeholder = "Enter your admin email" required>
+            <label>Username</label>
+            <input type="text" name="email" placeholder="Enter your admin username" required>
         </div>
 
         <div class="form-group">

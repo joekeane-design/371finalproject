@@ -1,5 +1,5 @@
-//Author Rivers Martin
 <?php
+// Author Rivers Martin
 session_start();
 require_once 'connection.php';
 
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$result = $conn->query("SELECT ServiceID, Name, Description, BasePrice, BaseDuration FROM services ORDER BY Name ASC");
+$result = $conn->query("SELECT ServiceID, Name, Description, BasePrice, BaseDuration FROM services ORDER BY Name ASC") or die($conn->error);
 ?>
 
 <!DOCTYPE html>

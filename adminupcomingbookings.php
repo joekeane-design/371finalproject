@@ -1,5 +1,5 @@
-//Author Rivers Martin
 <?php
+// Author Rivers Martin
 session_start();
 require_once 'connection.php';
 
@@ -30,7 +30,7 @@ $result = $conn->query("
       AND b.Status != 'Completed'
     GROUP BY b.BookingID
     ORDER BY b.RequestedDate ASC, b.BookingTime ASC
-");
+") or die("Query failed: " . $conn->error);
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
-//Author Rivers Martin
 <?php
+// Author Rivers Martin
 session_start();
 require_once 'connection.php';
 
@@ -32,11 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$totalCustomers = $conn->query("SELECT COUNT(*) AS total FROM customers")->fetch_assoc()['total'];
-$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings")->fetch_assoc()['total'];
-$pendingBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Pending'")->fetch_assoc()['total'];
-$confirmedBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Confirmed'")->fetch_assoc()['total'];
-$completedBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Completed'")->fetch_assoc()['total'];
+$totalCustomers   = $conn->query("SELECT COUNT(*) AS total FROM customers") or die($conn->error);
+$totalCustomers   = $totalCustomers->fetch_assoc()['total'];
+$totalBookings    = $conn->query("SELECT COUNT(*) AS total FROM bookings") or die($conn->error);
+$totalBookings    = $totalBookings->fetch_assoc()['total'];
+$pendingBookings  = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Pending'") or die($conn->error);
+$pendingBookings  = $pendingBookings->fetch_assoc()['total'];
+$confirmedBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Confirmed'") or die($conn->error);
+$confirmedBookings = $confirmedBookings->fetch_assoc()['total'];
+$completedBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE Status = 'Completed'") or die($conn->error);
+$completedBookings = $completedBookings->fetch_assoc()['total'];
 
 $result = $conn->query("
     SELECT
@@ -56,7 +61,7 @@ $result = $conn->query("
     LEFT JOIN services s ON bs.ServiceID = s.ServiceID
     GROUP BY b.BookingID
     ORDER BY b.RequestedDate ASC, b.BookingTime ASC
-");
+") or die($conn->error);
 ?>
 
 <!DOCTYPE html>
@@ -70,21 +75,14 @@ $result = $conn->query("
 
 <h1>Admin Dashboard</h1>
 
-<p>Welcome, <?php echo htmlspecialchars($_SESSION['AdminUsername']); ?>!</p>
+<p>Welcome, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</p>
 
-<nav>
-    <a href="admindashboard.php">Dashboard</a>
-    <a href="adminservices.php">Services</a>
-    <a href="adminupcomingbookings.php">Upcoming Bookings</a>
-    <a href="adminbookinghistory.php">History</a>
-    <a href="adminlogin.php?logout=1">Logout</a>
-</nav>
+<?php include 'adminnavbar.php'; ?>
 
 <?php if ($message !== ''): ?>
     <p class="message"><?php echo htmlspecialchars($message); ?></p>
 <?php endif; ?>
 
-<h2>Summary</h2>
 
 <div class="summary">
     <div class="card">
