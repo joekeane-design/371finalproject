@@ -1,3 +1,4 @@
+//Author Rivers Martin
 <?php
 session_start();
 require_once 'connection.php';
@@ -11,7 +12,7 @@ if (isset($_GET['logout'])) {
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
+    $username = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
     if ($username === '' || $password === '') {
@@ -25,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($adminID, $adminUsername, $passwordHash);
+            $stmt->bind_result($adminID, $Username, $passwordHash);
             $stmt->fetch();
 
             if (password_verify($password, $passwordHash)) {
                 $_SESSION['AdminID'] = $adminID;
-                $_SESSION['AdminUsername'] = $adminUsername;
+                $_SESSION['Username'] = $Username;
 
                 header("Location: admindashboard.php");
                 exit();
@@ -65,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST" action="adminlogin.php">
         <div class="form-group">
-            <label>Username</label>
-            <input type="text" name="username" required>
+            <label>Email</label>
+            <input type="text" name="email" placeholder = "Enter your admin email" required>
         </div>
 
         <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password" placeholder = "Enter your admin password" required>
         </div>
 
         <button type="submit" class="btn-login">Login</button>

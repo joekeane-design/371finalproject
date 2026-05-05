@@ -1,3 +1,4 @@
+//Author Rivers Martin
 <?php
 session_start();
 require_once 'connection.php';
