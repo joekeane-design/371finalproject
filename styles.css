@@ -676,6 +676,184 @@ td select {
     min-width: 80px;
 }
 
+/* ── Confirmation page ── */
+.confirmation-wrap {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.confirm-header {
+    background-color: var(--green);
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    padding: 36px 40px 28px;
+    text-align: center;
+}
+
+.confirm-header .checkmark {
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.confirm-header h1 {
+    color: #fff;
+    font-size: 26px;
+    padding: 0;
+    margin-bottom: 6px;
+}
+
+.confirm-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,.85);
+    margin: 0;
+}
+
+.confirm-body {
+    background: #fff;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.10);
+    padding: 32px 40px;
+}
+
+.confirm-section {
+    margin-bottom: 24px;
+}
+
+.confirm-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: #999;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 14px;
+    gap: 16px;
+}
+
+.detail-label {
+    color: #666;
+    white-space: nowrap;
+}
+
+.detail-value {
+    color: #222;
+    font-weight: 500;
+    text-align: right;
+}
+
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.services-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 14px;
+    color: #222;
+}
+
+.services-list li::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--green);
+    flex-shrink: 0;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 5px 0;
+    color: #555;
+}
+
+.pricing-row.discount { color: var(--orange); }
+
+.pricing-row.total {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--green);
+    border-top: 2px solid var(--green-mid);
+    margin-top: 8px;
+    padding-top: 10px;
+}
+
+.notice-box {
+    background-color: var(--green-light);
+    border: 1px solid var(--green-mid);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.notice-box strong { color: var(--green); }
+
+.booking-id-badge {
+    display: inline-block;
+    background-color: var(--green-light);
+    color: var(--green);
+    border: 1px solid var(--green-mid);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.confirm-actions a {
+    flex: 1;
+    display: block;
+    text-align: center;
+    padding: 11px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.btn-dashboard {
+    background-color: var(--green);
+    color: #fff;
+}
+
+.btn-dashboard:hover { background-color: var(--green-dark); }
+
+.btn-book-another {
+    background-color: #fff;
+    color: var(--green);
+    border: 2px solid var(--green);
+}
+
+.btn-book-another:hover { background-color: var(--green-light); }
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
     .layout {

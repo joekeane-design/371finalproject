@@ -7,7 +7,7 @@ if (!isset($_SESSION['AdminID'])) {
 ?>
 <nav>
     <div class="nav-inner">
-        <span class="nav-brand">GreenScape Admin</span>
+        <span class="nav-brand">Fargo Green Lawn Admin</span>
         <ul class="nav-links">
             <li><a href="admindashboard.php">Dashboard</a></li>
             <li><a href="adminservices.php">Services</a></li>

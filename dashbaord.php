@@ -26,7 +26,7 @@ $stmt->close();
 <body>
     <?php include 'navbar.php'; ?>
     <h1>Hello, <?php echo htmlspecialchars($_SESSION['FirstName']); ?>!</h1>
-
+    <h3>You Upcoming service requests:</h3>
     <?php if (empty($requests)): ?>
         <p class="no-services">No service requests found.</p>
     <?php else: ?>

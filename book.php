@@ -105,7 +105,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $bkSvcStmt->close();
 
                 $_SESSION['cart'] = [];
-                $success = 'Your booking has been submitted! We will be in touch to confirm.';
+                $_SESSION['last_booking'] = [
+                    'bookingID'      => $bookingID,
+                    'requestID'      => $requestID,
+                    'services'       => array_map(fn($id) => $serviceMap[$id]['Name'], $cartIDs),
+                    'yardSize'       => $yardSize,
+                    'notes'          => $notes,
+                    'requestedDate'  => $requestedDate,
+                    'bookingTime'    => $bookingTime,
+                    'baseTotal'      => $baseTotal,
+                    'discountPct'    => $discountPct,
+                    'finalEstimate'  => $finalEstimate,
+                ];
+                header("Location: confirmation.php");
+                exit();
             } else {
                 $error = 'Booking failed. Please try again.';
             }
@@ -140,12 +153,6 @@ $cartFinal = $cartTotal * (1 - $discountPct / 100);
 
     <a href="dashbaord.php" class="back-link">&larr; Back to Dashboard</a>
     <h1>Book a Service</h1>
-
-    <?php if ($success !== ''): ?>
-        <div style="max-width:500px;margin:24px auto;">
-            <div class="success-msg"><?php echo htmlspecialchars($success); ?></div>
-        </div>
-    <?php else: ?>
 
     <div class="layout">
 
@@ -271,8 +278,6 @@ $cartFinal = $cartTotal * (1 - $discountPct / 100);
 
         </div>
     </div>
-
-    <?php endif; ?>
 
 </body>
 </html>

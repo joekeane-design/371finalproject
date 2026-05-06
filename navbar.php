@@ -6,10 +6,11 @@ if (!isset($_SESSION['CustomerID'])) {
 ?>
 <nav>
     <div class="nav-inner">
-        <span class="nav-brand">GreenScape</span>
+        <span class="nav-brand">Fargo Green Lawn</span>
         <ul class="nav-links">
-            <li><a href="dashbaord.php">Dashboard</a></li>
-            <li><a href="services.php">Book</a></li>
+            <li><a href="dashboard.php">Dashboard</a></li>
+            <li><a href="book.php">Book</a></li>
+            <li><a href="services.php">Services</a></li>
             <li><a href="profile.php">Profile</a></li>
         </ul>
         <a href="logout.php" class="nav-logout">Logout</a>
