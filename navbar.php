@@ -5,10 +5,13 @@ if (!isset($_SESSION['CustomerID'])) {
 }
 ?>
 <nav>
-    <ul>
-        <li><a href="dashbaord.php">Dashboard</a></li>
-        <li><a href="services.php">Book</a></li>
-        <li><a href="profile.php">Profile</a></li>
-        <li><a href="logout.php">Logout</a></li>
-    </ul>
+    <div class="nav-inner">
+        <span class="nav-brand">GreenScape</span>
+        <ul class="nav-links">
+            <li><a href="dashbaord.php">Dashboard</a></li>
+            <li><a href="services.php">Book</a></li>
+            <li><a href="profile.php">Profile</a></li>
+        </ul>
+        <a href="logout.php" class="nav-logout">Logout</a>
+    </div>
 </nav>

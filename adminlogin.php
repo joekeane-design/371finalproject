@@ -55,13 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="auth-page">
 
 <div class="login-container">
     <h2>Admin Login</h2>
 
     <?php if ($error !== ''): ?>
-        <p class="error"><?php echo htmlspecialchars($error); ?></p>
+        <p class="error-msg"><?php echo htmlspecialchars($error); ?></p>
     <?php endif; ?>
 
     <form method="POST" action="adminlogin.php">

@@ -44,18 +44,13 @@ $result = $conn->query("
 
 <h1>Upcoming Bookings</h1>
 
-<nav>
-    <a href="admindashboard.php">Dashboard</a>
-    <a href="adminservices.php">Services</a>
-    <a href="adminupcomingbookings.php">Upcoming Bookings</a>
-    <a href="adminbookinghistory.php">History</a>
-    <a href="adminlogin.php?logout=1">Logout</a>
-</nav>
+<?php include 'adminnavbar.php'; ?>
 
 <?php if ($result->num_rows === 0): ?>
     <p class="empty">No upcoming bookings found.</p>
 <?php else: ?>
 
+<div class="table-wrap" style="padding:0 20px;">
 <table>
     <tr>
         <th>Booking ID</th>
@@ -83,6 +78,7 @@ $result = $conn->query("
         </tr>
     <?php endwhile; ?>
 </table>
+</div>
 
 <?php endif; ?>
 

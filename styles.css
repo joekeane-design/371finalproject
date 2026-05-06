@@ -1,0 +1,708 @@
+/* ── Reset ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── Design tokens ── */
+:root {
+    --green:        #2e7d32;
+    --green-dark:   #1b5e20;
+    --green-light:  #e8f5e9;
+    --green-mid:    #c8e6c9;
+    --orange:       #e65100;
+    --orange-light: #fff3e0;
+    --red:          #c62828;
+    --red-light:    #fdecea;
+    --bg:           #f0f4f0;
+    --white:        #ffffff;
+    --shadow-sm:    0 1px 6px rgba(0,0,0,.08);
+    --shadow-md:    0 2px 12px rgba(0,0,0,.10);
+    --radius:       8px;
+    --font:         Arial, sans-serif;
+}
+
+/* ── Base ── */
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    min-height: 100vh;
+    color: #333;
+}
+
+h1 {
+    color: var(--green);
+    font-size: 28px;
+    text-align: center;
+    padding: 28px 20px 16px;
+}
+
+h2 {
+    color: var(--green);
+    font-size: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+}
+
+/* ── Navbar ── */
+nav {
+    background-color: var(--green);
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.nav-brand {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 16px 20px 16px 4px;
+    margin-right: 8px;
+    border-right: 1px solid rgba(255,255,255,.25);
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2px;
+    flex: 1;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 16px 16px;
+    color: rgba(255,255,255,.88);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-links li a:hover {
+    background-color: rgba(255,255,255,.12);
+    color: var(--white);
+}
+
+.nav-logout {
+    margin-left: auto;
+    padding: 8px 16px;
+    color: rgba(255,255,255,.88);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+
+.nav-logout:hover {
+    background-color: rgba(255,255,255,.15);
+    color: var(--white);
+    border-color: rgba(255,255,255,.7);
+}
+
+/* ── Centered auth containers (login, register, profile) ── */
+.login-container,
+.register-container,
+.profile-container {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 440px;
+    margin: 48px auto;
+}
+
+.profile-container {
+    max-width: 520px;
+}
+
+.login-container h2,
+.register-container h2,
+.profile-container h2 {
+    text-align: center;
+    color: var(--green);
+    margin-bottom: 24px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ── Auth page body centering ── */
+body.auth-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+}
+
+/* ── Forms ── */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 14px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: var(--font);
+    background: var(--white);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--green);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.optional {
+    font-weight: normal;
+    color: #999;
+    font-size: 11px;
+}
+
+.pass-hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #888;
+    margin: 28px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* ── Buttons ── */
+.btn-login,
+.btn-register,
+.btn-save,
+.btn-submit {
+    width: 100%;
+    padding: 11px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-family: var(--font);
+    transition: background 0.15s;
+}
+
+.btn-login:hover,
+.btn-register:hover,
+.btn-save:hover,
+.btn-submit:hover {
+    background-color: var(--green-dark);
+}
+
+.btn-submit:disabled {
+    background-color: #a5d6a7;
+    cursor: default;
+}
+
+.btn-add {
+    white-space: nowrap;
+    padding: 7px 16px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: background 0.15s;
+}
+
+.btn-add:hover { background-color: var(--green-dark); }
+
+.btn-add:disabled {
+    background-color: #a5d6a7;
+    cursor: default;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: var(--red);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 2px;
+    font-family: var(--font);
+}
+
+.btn-remove:hover { color: #b71c1c; }
+
+.btn-clear {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #777;
+    cursor: pointer;
+    font-family: var(--font);
+}
+
+.btn-clear:hover { background-color: #f5f5f5; }
+
+/* Generic table/admin action buttons */
+table button,
+.admin-form button {
+    padding: 6px 14px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: background 0.15s;
+}
+
+table button:hover,
+.admin-form button:hover {
+    background-color: var(--green-dark);
+}
+
+table button.btn-danger {
+    background-color: var(--red);
+}
+
+table button.btn-danger:hover {
+    background-color: #b71c1c;
+}
+
+/* ── Messages ── */
+.error-msg,
+.error {
+    background-color: var(--red-light);
+    color: var(--red);
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.success-msg,
+.message {
+    background-color: var(--green-light);
+    color: var(--green);
+    border: 1px solid var(--green-mid);
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.no-services,
+.empty {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    margin-top: 60px;
+}
+
+/* ── Back link ── */
+.back-link {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--green);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+/* ── Auth footer links ── */
+.register-link,
+.login-link,
+.admin-login-link,
+.customer-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-link a,
+.login-link a,
+.admin-login-link a,
+.customer-link a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+.register-link a:hover,
+.login-link a:hover,
+.admin-login-link a:hover,
+.customer-link a:hover {
+    text-decoration: underline;
+}
+
+/* ── Services / Dashboard grid ── */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.service-card h2 {
+    color: var(--green);
+    font-size: 17px;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.service-card .description {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.service-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    border-top: 1px solid var(--green-light);
+    padding-top: 12px;
+    font-size: 14px;
+    color: #555;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.service-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.service-duration {
+    font-size: 13px;
+    color: #777;
+    background-color: #f1f8e9;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.service-status {
+    font-size: 13px;
+    color: #555;
+}
+
+/* ── Book page layout ── */
+.layout {
+    display: flex;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+    align-items: flex-start;
+}
+
+.services-panel {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.services-panel h2,
+.cart-panel h2 {
+    color: var(--green);
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green-mid);
+}
+
+/* Book-page service row cards */
+.services-panel .service-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+}
+
+.svc-info h3 { font-size: 15px; color: #222; margin-bottom: 4px; }
+.svc-meta    { font-size: 13px; color: #777; }
+.svc-price   { font-weight: bold; color: var(--green); font-size: 15px; margin-right: 6px; }
+
+/* ── Cart panel ── */
+.cart-panel {
+    width: 340px;
+    flex-shrink: 0;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 24px;
+}
+
+.cart-empty {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.cart-item-name  { color: #333; flex: 1; }
+.cart-item-price { color: var(--green); font-weight: bold; margin: 0 12px; }
+
+.cart-totals { margin-top: 14px; font-size: 14px; }
+
+.cart-totals .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    color: #555;
+}
+
+.cart-totals .row.discount { color: var(--orange); }
+
+.cart-totals .row.final {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--green);
+    border-top: 2px solid var(--green-mid);
+    margin-top: 6px;
+    padding-top: 8px;
+}
+
+.discount-badge {
+    display: inline-block;
+    background-color: var(--orange-light);
+    color: var(--orange);
+    border: 1px solid #ffcc80;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+/* ── Admin summary cards ── */
+.summary {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 28px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 28px;
+    text-align: center;
+    flex: 1 1 120px;
+    font-size: 14px;
+    color: #555;
+}
+
+.card strong {
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--green);
+    margin-bottom: 4px;
+}
+
+/* ── Admin page wrapper ── */
+.admin-page {
+    padding: 24px 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-page h1 {
+    text-align: left;
+    padding: 0 0 8px;
+    margin-bottom: 4px;
+}
+
+.admin-page .welcome {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+/* ── Admin "Add" form ── */
+.admin-form {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
+    max-width: 560px;
+    margin-bottom: 32px;
+}
+
+.admin-form h2 {
+    margin-bottom: 20px;
+}
+
+.admin-form .form-group {
+    margin-bottom: 14px;
+}
+
+/* ── Tables ── */
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    font-size: 14px;
+}
+
+th {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    vertical-align: middle;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background-color: #f9fdf9; }
+
+td input[type="text"],
+td input[type="number"],
+td textarea,
+td select {
+    padding: 6px 8px;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .cart-panel {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+
+    .nav-brand {
+        font-size: 15px;
+        padding-right: 12px;
+        margin-right: 4px;
+    }
+
+    .services-panel .service-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

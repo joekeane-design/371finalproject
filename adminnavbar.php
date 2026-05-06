@@ -6,11 +6,14 @@ if (!isset($_SESSION['AdminID'])) {
 }
 ?>
 <nav>
-    <ul>
-        <li><a href="admindashboard.php">Dashboard</a></li>
-        <li><a href="adminservices.php">Services</a></li>
-        <li><a href="adminbookinghistory.php">Past Bookings</a></li>
-        <li><a href="adminupcomingbookings.php">Upcoming Bookings</a></li>
-        <li><a href="adminlogin.php?logout=1">Logout</a></li>
-    </ul>
+    <div class="nav-inner">
+        <span class="nav-brand">GreenScape Admin</span>
+        <ul class="nav-links">
+            <li><a href="admindashboard.php">Dashboard</a></li>
+            <li><a href="adminservices.php">Services</a></li>
+            <li><a href="adminupcomingbookings.php">Upcoming Bookings</a></li>
+            <li><a href="adminbookinghistory.php">Past Bookings</a></li>
+        </ul>
+        <a href="logout.php" class="nav-logout">Logout</a>
+    </div>
 </nav>

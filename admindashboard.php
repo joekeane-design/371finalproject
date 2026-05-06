@@ -73,14 +73,14 @@ $result = $conn->query("
 </head>
 <body>
 
-<h1>Admin Dashboard</h1>
-
-<p>Welcome, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</p>
-
 <?php include 'adminnavbar.php'; ?>
 
+<h1>Admin Dashboard</h1>
+
+<p style="text-align:center;color:#666;margin-bottom:24px;">Welcome, <?php echo htmlspecialchars($_SESSION['Username']); ?>!</p>
+
 <?php if ($message !== ''): ?>
-    <p class="message"><?php echo htmlspecialchars($message); ?></p>
+    <p class="success-msg" style="margin:0 20px 16px;"><?php echo htmlspecialchars($message); ?></p>
 <?php endif; ?>
 
 
@@ -111,8 +111,9 @@ $result = $conn->query("
     </div>
 </div>
 
-<h2>Manage Bookings</h2>
+<h2 style="padding:0 20px 8px;border-bottom:2px solid #c8e6c9;margin:0 20px 16px;">Manage Bookings</h2>
 
+<div class="table-wrap" style="padding:0 20px;">
 <table>
     <tr>
         <th>ID</th>
@@ -167,6 +168,7 @@ $result = $conn->query("
         </tr>
     <?php endwhile; ?>
 </table>
+</div>
 
 </body>
 </html>

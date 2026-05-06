@@ -96,44 +96,43 @@ $result = $conn->query("SELECT ServiceID, Name, Description, BasePrice, BaseDura
 
 <h1>Manage Services</h1>
 
-<nav>
-    <a href="admindashboard.php">Dashboard</a>
-    <a href="adminservices.php">Services</a>
-    <a href="adminupcomingbookings.php">Upcoming Bookings</a>
-    <a href="adminbookinghistory.php">History</a>
-    <a href="adminlogin.php?logout=1">Logout</a>
-</nav>
+<?php include 'adminnavbar.php'; ?>
 
 <?php if ($message !== ''): ?>
-    <p class="message"><?php echo htmlspecialchars($message); ?></p>
+    <p class="success-msg" style="margin:0 20px 16px;"><?php echo htmlspecialchars($message); ?></p>
 <?php endif; ?>
 
 <?php if ($error !== ''): ?>
-    <p class="error"><?php echo htmlspecialchars($error); ?></p>
+    <p class="error-msg" style="margin:0 20px 16px;"><?php echo htmlspecialchars($error); ?></p>
 <?php endif; ?>
 
-<h2>Add New Service</h2>
+<div class="admin-form" style="margin:24px 20px;">
+    <h2>Add New Service</h2>
+    <form method="POST" action="adminservices.php">
+        <input type="hidden" name="action" value="add">
+        <div class="form-group">
+            <label>Service Name</label>
+            <input type="text" name="Name" required>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="Description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Base Price</label>
+            <input type="number" step="0.01" name="BasePrice" required>
+        </div>
+        <div class="form-group">
+            <label>Base Duration</label>
+            <input type="text" name="BaseDuration" placeholder="e.g. 2 hours" required>
+        </div>
+        <button type="submit">Add Service</button>
+    </form>
+</div>
 
-<form method="POST" action="adminservices.php">
-    <input type="hidden" name="action" value="add">
+<h2 style="padding:0 20px 8px;border-bottom:2px solid #c8e6c9;margin:0 20px 16px;">Existing Services</h2>
 
-    <label>Service Name</label><br>
-    <input type="text" name="Name" required><br><br>
-
-    <label>Description</label><br>
-    <textarea name="Description" required></textarea><br><br>
-
-    <label>Base Price</label><br>
-    <input type="number" step="0.01" name="BasePrice" required><br><br>
-
-    <label>Base Duration</label><br>
-    <input type="text" name="BaseDuration" placeholder="Example: 2 hours" required><br><br>
-
-    <button type="submit">Add Service</button>
-</form>
-
-<h2>Existing Services</h2>
-
+<div class="table-wrap" style="padding:0 20px;">
 <table>
     <tr>
         <th>ID</th>
@@ -182,12 +181,13 @@ $result = $conn->query("SELECT ServiceID, Name, Description, BasePrice, BaseDura
                 <form method="POST" action="adminservices.php" onsubmit="return confirm('Delete this service?');">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="ServiceID" value="<?php echo $row['ServiceID']; ?>">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
     <?php endwhile; ?>
 </table>
+</div>
 
 </body>
 </html>
