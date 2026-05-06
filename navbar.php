@@ -11,6 +11,7 @@ if (!isset($_SESSION['CustomerID'])) {
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="book.php">Book</a></li>
             <li><a href="services.php">Services</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
             <li><a href="profile.php">Profile</a></li>
         </ul>
         <a href="logout.php" class="nav-logout">Logout</a>

@@ -861,6 +861,216 @@ td select {
 
 .btn-book-another:hover { background-color: var(--green-light); }
 
+/* ── Admin feedback list ── */
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.feedback-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feedback-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.feedback-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.feedback-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #222;
+}
+
+.feedback-email {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.feedback-stars {
+    display: flex;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.feedback-stars .star {
+    font-size: 20px;
+    color: #ddd;
+    line-height: 1;
+}
+
+.feedback-stars .star.filled {
+    color: #f9a825;
+}
+
+.feedback-comment {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.feedback-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.feedback-id {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.feedback-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.feedback-badge.registered {
+    background-color: var(--green-light);
+    color: var(--green);
+    border: 1px solid var(--green-mid);
+}
+
+.feedback-badge.guest {
+    background-color: #f5f5f5;
+    color: #888;
+    border: 1px solid #e0e0e0;
+}
+
+/* ── Contact / Feedback page ── */
+.contact-wrap {
+    max-width: 580px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.contact-header h1 {
+    padding-bottom: 6px;
+}
+
+.contact-header p {
+    color: #666;
+    font-size: 15px;
+}
+
+.contact-body {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 32px 36px;
+}
+
+/* Star rating */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+    width: auto;
+}
+
+.star-rating label {
+    font-size: 32px;
+    color: #ddd;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: normal;
+    transition: color 0.1s;
+    line-height: 1;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f9a825;
+}
+
+/* Contact success state */
+.contact-success {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 48px 36px;
+    text-align: center;
+}
+
+.contact-success-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--green);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 32px;
+    line-height: 64px;
+    margin: 0 auto 20px;
+}
+
+.contact-success h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.contact-success p {
+    color: #666;
+    font-size: 15px;
+    margin-bottom: 28px;
+}
+
+.btn-back-home {
+    display: inline-block;
+    padding: 11px 28px;
+    background-color: var(--green);
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s;
+}
+
+.btn-back-home:hover { background-color: var(--green-dark); }
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
     .layout {

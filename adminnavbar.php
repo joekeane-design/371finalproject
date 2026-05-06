@@ -12,6 +12,7 @@ if (!isset($_SESSION['AdminID'])) {
             <li><a href="admindashboard.php">Dashboard</a></li>
             <li><a href="adminservices.php">Services</a></li>
             <li><a href="adminupcomingbookings.php">Upcoming Bookings</a></li>
+            <li><a href="feedback.php">Review Feedback</a></li>
             <li><a href="adminbookinghistory.php">Past Bookings</a></li>
         </ul>
         <a href="logout.php" class="nav-logout">Logout</a>
