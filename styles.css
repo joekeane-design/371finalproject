@@ -45,6 +45,13 @@ h2 {
     padding-bottom: 8px;
     border-bottom: 2px solid var(--green-mid);
 }
+h3 {
+    color: #333;
+    font-size: 16px;
+    max-width: 1100px;
+    margin: 0 auto 8px;
+    padding: 0 20px;
+}
 
 /* ── Navbar ── */
 nav {
